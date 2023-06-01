@@ -27,7 +27,8 @@ class HeroViewSet(viewsets.ModelViewSet):
 @csrf_exempt
 def find_hero_by_public_id(request, public_id):
     print(public_id)
-    hero = HeroModel.objects.filter(public_id=public_id).first()
+    # hero = HeroModel.objects.filter(public_id=public_id).first()
+    hero = HeroModel.objects.get(public_id=public_id)
     hero = HeroModelSerializer(hero) if hero else None
     response = JSONRenderer().render(hero.data) if hero else HttpResponse(status=404)
     return HttpResponse(response, status=200) if hero else HttpResponse(response, status=404)
