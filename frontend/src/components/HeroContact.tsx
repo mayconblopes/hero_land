@@ -1,4 +1,5 @@
 import '../css/tooplate-style.css'
+import '../assets/fontawesome/css/all.min.css'
 
 type HeroContactProps = {
   instagram?: string
@@ -27,6 +28,11 @@ export default function HeroContact({
 
   console.log('SOCIAL', social)
 
+  function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault()
+    window.open(whatsapp)
+  }
+
   return (
     <section className='tm-contact tm-mb-50 tm-bgcolor-3 tm-border-rounded'>
       <div className='tm-contact-header tm-flex-center'>
@@ -45,53 +51,44 @@ export default function HeroContact({
           {social
             .filter((link) => link.url !== null)
             .map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                className='tm-social-link'
-              >
-                <i className='fab fa-facebook'></i>
+              <a key={link.name} href={link.url} className='tm-social-link'>
+                <i className={`fab fa-${link.name}`}></i>
               </a>
             ))}
         </div>
-        {/* <div className='tm-flex'>
-          <a href='https://facebook.com' className='tm-social-link'>
-            <i className='fab fa-facebook'></i>
-          </a>
-          <a href='https://twitter.com' className='tm-social-link'>
-            <i className='fab fa-twitter'></i>
-          </a>
-          <a href='https://instagram.com' className='tm-social-link'>
-            <i className='fab fa-instagram'></i>
-          </a>
-        </div> */}
       </div>
-      <div className='tm-contact-form-container'>
-        <form
-          id='contact-form'
-          action=''
-          method='POST'
-          className='tm-contact-form'
-        >
-          <input type='text' name='name' placeholder='name' required={false} />
-          <input
-            type='email'
-            name='email'
-            placeholder='email'
-            required={false}
-          />
-          <textarea
-            rows={5}
-            name='message'
-            className='tm-mb-30'
-            placeholder='message'
-            required={false}
-          ></textarea>
-          <button type='submit' className='tm-right tm-btn-submit'>
-            send
-          </button>
-        </form>
-      </div>
+      {whatsapp && (
+        <div className='tm-contact-form-container'>
+          <form
+            id='contact-form'
+            action=''
+            method='POST'
+            className='tm-contact-form'
+          >
+            <input
+              type='text'
+              name='name'
+              placeholder='seu nome'
+              required={false}
+            />
+
+            <textarea
+              rows={5}
+              name='message'
+              className='tm-mb-30'
+              placeholder='sua mensagem'
+              required={false}
+            ></textarea>
+            <button
+              onClick={(e) => handleSubmit(e)}
+              type='submit'
+              className='tm-right tm-btn-submit'
+            >
+              enviar
+            </button>
+          </form>
+        </div>
+      )}
     </section>
   )
 }

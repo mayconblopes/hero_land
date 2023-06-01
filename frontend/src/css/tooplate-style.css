@@ -77,7 +77,7 @@ a:hover { color: #30ADAD; }
 
 input,
 textarea,
-button {
+.simple-button, button {
     display: block;
 }
 
