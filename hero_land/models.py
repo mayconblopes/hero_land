@@ -13,11 +13,14 @@ def imagekitio_save(super, file_field, file_name, cover_url, cover_id, *args, **
 
     imagekit = ImageKit(
 
-        private_key='private_yr6ug8X/MYYWPneTsgT6Cheq1gY=',
+        #TODO (env)
+        private_key='TODO',
 
-        public_key='public_qHQWN0tCwehMofMzXpS3b3XUE38=',
+        #TODO (env)
+        public_key='TODO',
 
-        url_endpoint='https://ik.imagekit.io/mbl/heroland'
+        #TODO (env)
+        url_endpoint='TODO'
 
     )
 
