@@ -1,5 +1,6 @@
 import '../css/tooplate-style.css'
 import '../assets/fontawesome/css/all.min.css'
+import { useState } from 'react'
 
 type HeroContactProps = {
   instagram?: string
@@ -26,11 +27,12 @@ export default function HeroContact({
     { name: 'facebook', url: facebook },
   ]
 
-  console.log('SOCIAL', social)
+  const [customerName, setCustomerName] = useState('')
+  const [customerMessage, setCustomerMessage] = useState('')
 
   function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
-    window.open(whatsapp)
+    window.open(whatsapp+`&text=Olá! Meu nome é ${customerName}. \n ${customerMessage}`)
   }
 
   return (
@@ -70,6 +72,8 @@ export default function HeroContact({
               name='name'
               placeholder='seu nome'
               required={false}
+              onChange={e => setCustomerName(e.target.value)}
+              value={customerName}
             />
 
             <textarea
@@ -78,11 +82,15 @@ export default function HeroContact({
               className='tm-mb-30'
               placeholder='sua mensagem'
               required={false}
+              onChange={e => setCustomerMessage(e.target.value)}
+              value={customerMessage}
             ></textarea>
             <button
               onClick={(e) => handleSubmit(e)}
               type='submit'
               className='tm-right tm-btn-submit'
+              disabled={customerName !== '' && customerMessage !== '' ? false : true}
+              style={{display: customerName !== '' && customerMessage !== '' ? '' : 'none' }}
             >
               enviar
             </button>
