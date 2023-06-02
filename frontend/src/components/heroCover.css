@@ -1,0 +1,32 @@
+.hero-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero-cover-image {
+  height: 100%;
+  max-width: 315px; 
+  border-radius: 10px;
+}
+
+#name {
+    justify-self: start;
+}
+
+@media (max-width: 545px) {
+  .hero-container {
+    flex-direction: column;
+  }
+
+  .hero-cover-image {
+    margin-top: 10px;
+    width: 90%!important;
+  }
+
+  #name {
+    justify-self: center;
+    font-size: 18px;
+    max-width: 90%;
+  }
+}

@@ -7,6 +7,7 @@ import './css/tooplate-style.css'
 import HeroAbout from './components/HeroAbout'
 import HeroContact from './components/HeroContact'
 import Footer from './components/Footer'
+import HeroCover from './components/HeroCover'
 
 function App() {
   const [hero, setHero] = useState<Hero>()
@@ -22,11 +23,7 @@ function App() {
     <>
       {hero && (
         <div className='tm-container-fluid'>
-          <section className='tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded'>
-            <i className='fas fa-heart fa-3x'></i>
-            <h1>{hero.name}</h1>
-          </section>
-
+          <HeroCover name={hero.name} cover={hero.cover_url || `$https://ui-avatars.com/api/?name=${hero.name}`}/>
           <HeroAbout about={hero.bio} />
           <HeroContact
             instagram={hero.instagram}

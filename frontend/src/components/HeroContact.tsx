@@ -51,7 +51,7 @@ export default function HeroContact({
           {social
             .filter((link) => link.url !== null)
             .map((link) => (
-              <a key={link.name} href={link.url} className='tm-social-link'>
+              <a key={link.name} href={link.url} className='tm-social-link' target='_blank' rel="noreferrer">
                 <i className={`fab fa-${link.name}`}></i>
               </a>
             ))}
