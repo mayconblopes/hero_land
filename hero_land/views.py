@@ -7,15 +7,9 @@ from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 from rest_framework.renderers import JSONRenderer
 
-from hero_land.models import CustomUserModel, HeroModel
-from hero_land.serializers import CustomUserSerializer, HeroModelSerializer
+from hero_land.models import HeroModel
+from hero_land.serializers import HeroModelSerializer
 from django.views.decorators.csrf import csrf_exempt
-
-
-class CustomUserViewSet(viewsets.ModelViewSet):
-    queryset = CustomUserModel.objects.all()
-    serializer_class = CustomUserSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class HeroViewSet(viewsets.ModelViewSet):

@@ -1,11 +1,5 @@
 from rest_framework import serializers
-from .models import HeroModel, CustomUserModel
-
-
-class CustomUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUserModel
-        fields = ['id', 'username', 'hero']
+from .models import HeroModel
 
 
 class HeroModelSerializer(serializers.ModelSerializer):
