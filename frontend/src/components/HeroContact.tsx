@@ -1,30 +1,17 @@
 import '../css/tooplate-style.css'
 import '../assets/fontawesome/css/all.min.css'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { HeroContext } from '../context/HeroContext'
 
-type HeroContactProps = {
-  instagram?: string
-  twitter?: string
-  linkedin?: string
-  facebook?: string
-  phone?: string
-  address?: string
-  whatsapp?: string
-}
-export default function HeroContact({
-  instagram,
-  twitter,
-  linkedin,
-  facebook,
-  phone,
-  address,
-  whatsapp,
-}: HeroContactProps) {
+export default function HeroContact() {
+
+  const {currentHero, setCurrentHero} = useContext(HeroContext)
+
   const social = [
-    { name: 'instagram', url: instagram },
-    { name: 'twitter', url: twitter },
-    { name: 'linkedin', url: linkedin },
-    { name: 'facebook', url: facebook },
+    { name: 'instagram', url: currentHero?.instagram },
+    { name: 'twitter', url: currentHero?.twitter },
+    { name: 'linkedin', url: currentHero?.linkedin },
+    { name: 'facebook', url: currentHero?.facebook },
   ]
 
   const [customerName, setCustomerName] = useState('')
@@ -32,7 +19,7 @@ export default function HeroContact({
 
   function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
-    window.open(whatsapp+`&text=Olá! Meu nome é ${customerName}. \n ${customerMessage}`)
+    window.open(currentHero?.whatsapp+`&text=Olá! Meu nome é ${customerName}. \n ${customerMessage}`)
   }
 
   return (
@@ -42,10 +29,10 @@ export default function HeroContact({
         <h2>Contato</h2>
       </div>
       <div className='tm-contact-info'>
-        <address className='tm-mb-30'>{address}</address>
+        <address className='tm-mb-30'>{currentHero?.address}</address>
         <div className='tm-text-white tm-mb-40'>
-          <a href={whatsapp} className='tm-link-white'>
-            Tel: {phone}
+          <a href={currentHero?.whatsapp} className='tm-link-white'>
+            Tel: {currentHero?.phone}
           </a>
         </div>
 
@@ -59,7 +46,7 @@ export default function HeroContact({
             ))}
         </div>
       </div>
-      {whatsapp && (
+      {currentHero?.whatsapp && (
         <div className='tm-contact-form-container'>
           <form
             id='contact-form'
