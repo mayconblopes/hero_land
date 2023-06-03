@@ -19,22 +19,33 @@ export interface IHeroContext {
   setCurrentHero: (hero: Hero | null) => void
 }
 
-export type Hero = {
-    id?: string
-    name?: string
-    username?: string
-    skills?: string
-    bio?: string
-    public_id?: string
-    instagram?: string
-    twitter?: string
-    linkedin?: string
-    facebook?: string
-    phone?: string
-    address?: string
-    whatsapp?: string
-    cover_url?: string
-    cover?:string
-  }
+export type ElementToChangeInThemeContext = 'coverBGColor' | 'aboutBGColor' | 'contactBGColor'
 
-  
+export type Theme = {
+  coverBGColor: string
+  aboutBGColor: string
+  contactBGColor: string
+}
+
+export interface IThemeContext {
+  currentTheme: Theme
+  setCurrentTheme: (theme: Theme) => void
+}
+
+export type Hero = {
+  id?: string
+  name?: string
+  username?: string
+  skills?: string
+  bio?: string
+  public_id?: string
+  instagram?: string
+  twitter?: string
+  linkedin?: string
+  facebook?: string
+  phone?: string
+  address?: string
+  whatsapp?: string
+  cover_url?: string
+  cover?: string
+}
