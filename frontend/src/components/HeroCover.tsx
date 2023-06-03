@@ -1,21 +1,25 @@
-import { useContext } from 'react'
+import { Fragment, useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import './heroCover.css'
 import { useParams } from 'react-router-dom'
 import { HeroContext } from '../context/HeroContext'
+import ColorPicker from './ColorPicker'
+import { ThemeContext } from '../context/ThemeContext'
 
 export default function HeroCover() {
   const { username } = useParams()
   const userContext = useContext(UserContext)
   const { currentHero, setCurrentHero } = useContext(HeroContext)
+  const { currentTheme, setCurrentTheme} = useContext(ThemeContext)
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value
-      setCurrentHero({...currentHero, name: value})
+    setCurrentHero({ ...currentHero, name: value })
   }
 
+
   return (
-    <section className='tm-site-header hero-container tm-mb-50 tm-bgcolor-1 tm-border-rounded'>
+    <section className='tm-site-header hero-container tm-mb-50 tm-border-rounded' style={{backgroundColor: currentTheme.coverBGColor}}>
       <div
         className='hero-cover-image'
         style={{
@@ -28,15 +32,26 @@ export default function HeroCover() {
           borderRadius: '10px',
         }}
       />
+      {
+        // conditional render: current user is the hero owner? (edit enabled)
+      }
 
       {userContext.currentUser?.username === username ? (
-        <input
-          id='name'
-          value={currentHero?.name}
-          onChange={(e) => handleOnChange(e)}
-        />
+        <div style={{display: 'flex', flexDirection: 'column'}}>
+          <input
+            id='name'
+            value={currentHero?.name}
+            onChange={(e) => handleOnChange(e)}
+          />
+          <ColorPicker elementToChange='coverBGColor'/>
+        </div>
       ) : (
-        <h1 id='name'>{currentHero?.name}</h1>
+        <Fragment>
+          {
+            // conditional render: current user is not the hero owner? (edit disabled)
+          }
+          <h1 id='name'>{currentHero?.name}</h1>
+        </Fragment>
       )}
     </section>
   )
