@@ -10,6 +10,11 @@ django-singleton-model = "*"
 django-cors-headers = "*"
 markdown = "*"
 django-markdownfield = "*"
+pillow = "*"
+imagekitio = "*"
+urllib3 = "==1.26.15"
+requests-toolbelt = "==0.10.1"
+python-decouple = "*"
 
 [dev-packages]
 
