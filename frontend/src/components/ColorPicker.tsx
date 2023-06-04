@@ -24,8 +24,6 @@ export default function ColorPicker({
       ...colorPickerState,
       visible: !colorPickerState.visible,
     })
-    console.log('visibilidade')
-    console.log(colorPickerState)
   }
 
   function handleOnChangeComplete(color: ColorResult) {
