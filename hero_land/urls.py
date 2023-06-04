@@ -4,6 +4,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'heroes', views.HeroViewSet)
+router.register(r'themes', views.ThemeViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
