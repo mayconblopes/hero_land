@@ -19,7 +19,7 @@ export default function HeroContact() {
 
   const [customerName, setCustomerName] = useState('')
   const [customerMessage, setCustomerMessage] = useState('')
-  const { currentTheme, setCurrentTheme } = useContext(ThemeContext)
+  const { currentTheme } = useContext(ThemeContext)
 
   function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()

@@ -15,7 +15,7 @@ export default function LandingPage() {
 
   const userContext = useContext(UserContext)
   const { currentHero, setCurrentHero } = useContext(HeroContext)
-  const { currentTheme, setCurrentTheme } = useContext(ThemeContext)
+  const { currentTheme } = useContext(ThemeContext)
   const [message, setMessage] = useState('')
   const [hasUnsavedEdits, setHasUnsavedEdits] = useState(true)
 
@@ -31,6 +31,7 @@ export default function LandingPage() {
       }
       )
       .catch((error) => console.log(error))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
   useEffect(() => {
@@ -108,22 +109,7 @@ export default function LandingPage() {
           <Footer />
         </div>
       )}
-      {/* <button
-        onClick={(e) => {
-          e.preventDefault()
-          console.log(currentHero)
-        }}
-      >
-        Hero
-      </button>
-      <button
-        onClick={(e) => {
-          e.preventDefault()
-          console.log(userContext.currentUser)
-        }}
-      >
-        CurrentUser
-      </button> */}
+      
     </div>
   )
 }

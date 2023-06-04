@@ -10,7 +10,7 @@ import ColorPicker from './ColorPicker'
 export default function HeroAbout() {
   const { currentHero, setCurrentHero } = useContext(HeroContext)
   const { currentUser } = useContext(UserContext)
-  const { currentTheme, setCurrentTheme } = useContext(ThemeContext)
+  const { currentTheme } = useContext(ThemeContext)
 
   return (
     <section

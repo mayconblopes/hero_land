@@ -10,7 +10,7 @@ export default function HeroCover() {
   const { username } = useParams()
   const userContext = useContext(UserContext)
   const { currentHero, setCurrentHero } = useContext(HeroContext)
-  const { currentTheme, setCurrentTheme } = useContext(ThemeContext)
+  const { currentTheme } = useContext(ThemeContext)
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value
