@@ -3,16 +3,12 @@ import uuid
 
 from django.db import models
 from django.contrib.auth.models import User
-from markdownfield.models import MarkdownField, RenderedMarkdownField
 from imagekitio import ImageKit
 from decouple import config
 
 PRIVATEKEY = config("PRIVATEKEY")
 PUBLICKEY = config("PUBLICKEY")
 ENDPOINT = config("ENDPOINT")
-
-print('private', PRIVATEKEY)
-print('public', PUBLICKEY)
 
 
 # Method to save files on imagekitio
@@ -48,10 +44,6 @@ def imagekitio_save(super, file_field, file_name, cover_url, cover_id, *args, **
     except ValueError:
         print('Valid cover not uploaded', ValueError)
 
-
-    # update the database saving the files's URL
-    # super.save(*args, **kwargs)
-
     # delete temp media folder on WebServer
     # try/except to ignore errors in case of saving the model without uploading new image
     try:
@@ -60,13 +52,6 @@ def imagekitio_save(super, file_field, file_name, cover_url, cover_id, *args, **
         pass
 
     return cover_url, cover_id
-
-
-# Create your models here.
-
-# class CustomUserModel(User):
-#     objects = models.Manager()
-#     hero = models.ForeignKey("HeroModel", on_delete=models.CASCADE)
 
 
 class HeroModel(models.Model):
@@ -87,7 +72,7 @@ class HeroModel(models.Model):
     cover = models.ImageField(upload_to='hero-covers', default='', blank=True, null=True)
     cover_url = models.URLField(blank=True, null=True)
     cover_id = models.CharField(blank=True, null=True, default='', max_length=50)
-
+    theme = models.ForeignKey('ThemeModel', on_delete=models.CASCADE, default='1')
 
     def __str__(self):
         return self.username
@@ -95,4 +80,20 @@ class HeroModel(models.Model):
     def save(self, *args, **kwargs):
         self.cover_url, self.cover_id = imagekitio_save(super=super(), file_field=self.cover, file_name=self.name,
                                                         cover_url=self.cover_url, cover_id=self.cover_id)
+        if self.theme.name == 'default':
+            self.theme = ThemeModel.objects.create(name=self.username)
         super().save()
+
+
+class ThemeModel(models.Model):
+    objects = models.Manager()
+    name = models.CharField(max_length=50, unique=True)
+    cover_bgcolor = models.CharField(max_length=20, default='#F96699')
+    about_bgcolor = models.CharField(max_length=20, default='#38CCCC')
+    contact_bgcolor = models.CharField(max_length=20, default='#99CCCC')
+    page_bgcolor = models.CharField(max_length=20, default='#000000')
+    font_color = models.CharField(max_length=20, default='#000000')
+
+
+    def __str__(self):
+        return self.name
