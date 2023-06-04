@@ -4,17 +4,19 @@ import ReactMarkdown from 'react-markdown'
 import { Fragment, useContext } from 'react'
 import { HeroContext } from '../context/HeroContext'
 import { UserContext } from '../context/UserContext'
-
-type HeroAboutProps = {
-  about: string
-}
+import { ThemeContext } from '../context/ThemeContext'
+import ColorPicker from './ColorPicker'
 
 export default function HeroAbout() {
   const { currentHero, setCurrentHero } = useContext(HeroContext)
   const { currentUser } = useContext(UserContext)
+  const { currentTheme, setCurrentTheme } = useContext(ThemeContext)
 
   return (
-    <section className='tm-about tm-mb-80 tm-p-50 tm-bgcolor-2 tm-border-rounded'>
+    <section
+      className='tm-about tm-mb-80 tm-p-50 tm-border-rounded'
+      style={{ backgroundColor: currentTheme.about_bgcolor }}
+    >
       <div className='tm-about-header tm-flex-center'>
         <i className='fas fa-user fa-2x'></i>
         <h2>Sobre</h2>
@@ -24,13 +26,18 @@ export default function HeroAbout() {
           // conditional render: current user is the hero owner? (edit enabled)
         }
         {currentUser?.username === currentHero?.username ? (
-          <textarea
-            onChange={(e) =>
-              setCurrentHero({ ...currentHero, bio: e.target.value })
-            }
-            value={currentHero?.bio}
-            style={{ height: '300px' }}
-          />
+          <Fragment>
+            <div>
+              <ColorPicker elementToChange='about_bgcolor' />
+            </div>
+            <textarea
+              onChange={(e) =>
+                setCurrentHero({ ...currentHero, bio: e.target.value })
+              }
+              value={currentHero?.bio}
+              style={{ height: '300px' }}
+            />
+          </Fragment>
         ) : (
           <Fragment>
             {

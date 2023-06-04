@@ -3,6 +3,8 @@ import '../assets/fontawesome/css/all.min.css'
 import { Fragment, useContext, useState } from 'react'
 import { HeroContext } from '../context/HeroContext'
 import { UserContext } from '../context/UserContext'
+import { ThemeContext } from '../context/ThemeContext'
+import ColorPicker from './ColorPicker'
 
 export default function HeroContact() {
   const { currentHero, setCurrentHero } = useContext(HeroContext)
@@ -17,6 +19,7 @@ export default function HeroContact() {
 
   const [customerName, setCustomerName] = useState('')
   const [customerMessage, setCustomerMessage] = useState('')
+  const { currentTheme, setCurrentTheme } = useContext(ThemeContext)
 
   function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
@@ -35,7 +38,10 @@ export default function HeroContact() {
   }
 
   return (
-    <section className='tm-contact tm-mb-50 tm-bgcolor-3 tm-border-rounded'>
+    <section
+      className='tm-contact tm-mb-50 tm-border-rounded'
+      style={{ backgroundColor: currentTheme.contact_bgcolor }}
+    >
       <div className='tm-contact-header tm-flex-center'>
         <i className='fas fa-map-pin fa-3x'></i>
         <h2>Contato</h2>
@@ -46,6 +52,9 @@ export default function HeroContact() {
         }
         {currentUser?.username === currentHero?.username ? (
           <Fragment>
+            <div>
+              <ColorPicker elementToChange='contact_bgcolor' />
+            </div>
             <textarea
               name='address'
               onChange={(e) => handleOnChange(e)}

@@ -10,16 +10,18 @@ export default function HeroCover() {
   const { username } = useParams()
   const userContext = useContext(UserContext)
   const { currentHero, setCurrentHero } = useContext(HeroContext)
-  const { currentTheme, setCurrentTheme} = useContext(ThemeContext)
+  const { currentTheme, setCurrentTheme } = useContext(ThemeContext)
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value
     setCurrentHero({ ...currentHero, name: value })
   }
 
-
   return (
-    <section className='tm-site-header hero-container tm-mb-50 tm-border-rounded' style={{backgroundColor: currentTheme.coverBGColor}}>
+    <section
+      className='tm-site-header hero-container tm-mb-50 tm-border-rounded'
+      style={{ backgroundColor: currentTheme.cover_bgcolor }}
+    >
       <div
         className='hero-cover-image'
         style={{
@@ -37,13 +39,17 @@ export default function HeroCover() {
       }
 
       {userContext.currentUser?.username === username ? (
-        <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          <div>
+            <ColorPicker elementToChange='cover_bgcolor' />
+          </div>
+          
           <input
             id='name'
             value={currentHero?.name}
             onChange={(e) => handleOnChange(e)}
+            style={{marginBottom: '15px'}}
           />
-          <ColorPicker elementToChange='coverBGColor'/>
         </div>
       ) : (
         <Fragment>
