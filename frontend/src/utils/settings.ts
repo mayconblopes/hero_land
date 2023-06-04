@@ -2,6 +2,7 @@ export const APIURL = 'http://127.0.0.1:8000'
 // export const HERO = `${APIURL}/hero/36bc4fa3-fc40-4a63-8bbb-adec53208381airi`
 // export const HERO = `${APIURL}/hero/36bc4fa3-fc40-4aMike3-8bbb-adec53208381`
 export const HEROES = `${APIURL}/heroes`
+export const THEMES = `${APIURL}/themes`
 
 export type User = {
   username?: string
@@ -19,12 +20,15 @@ export interface IHeroContext {
   setCurrentHero: (hero: Hero | null) => void
 }
 
-export type ElementToChangeInThemeContext = 'coverBGColor' | 'aboutBGColor' | 'contactBGColor'
+export type ElementToChangeInThemeContext = 'cover_bgcolor' | 'about_bgcolor' | 'contact_bgcolor' | 'page_bgcolor' | 'font_color'
 
 export type Theme = {
-  coverBGColor: string
-  aboutBGColor: string
-  contactBGColor: string
+  id?: string
+  cover_bgcolor: string
+  about_bgcolor: string
+  contact_bgcolor: string
+  page_bgcolor: string
+  font_color: string
 }
 
 export interface IThemeContext {
@@ -48,4 +52,5 @@ export type Hero = {
   whatsapp?: string
   cover_url?: string
   cover?: string
+  theme?: string
 }
