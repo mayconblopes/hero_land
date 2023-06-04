@@ -3,7 +3,7 @@ import { APIURL, Hero } from '../utils/settings'
 import { UserContext } from '../context/UserContext'
 
 export default function NewHeroForm() {
-  const [hero, setHero] = useState<Hero>({ name: '', skills: '', bio: '', public_id: '' })
+  const [hero, setHero] = useState<Hero>({ name: '', username: '', skills: '', bio: '', public_id: '' })
   const userContext = useContext(UserContext)
 
   function handleOnChange(
