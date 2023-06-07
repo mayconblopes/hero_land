@@ -9,18 +9,19 @@ from rest_framework.renderers import JSONRenderer
 from hero_land.models import HeroModel, ThemeModel
 from hero_land.serializers import HeroModelSerializer, ThemeModelSerializer
 from django.views.decorators.csrf import csrf_exempt
+from .permissions import IsTheUserOrReadOnly
 
 
 class HeroViewSet(viewsets.ModelViewSet):
     queryset = HeroModel.objects.all()
     serializer_class = HeroModelSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsTheUserOrReadOnly]
 
 
 class ThemeViewSet(viewsets.ModelViewSet):
     queryset = ThemeModel.objects.all()
     serializer_class = ThemeModelSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsTheUserOrReadOnly]
 
 
 @csrf_exempt
