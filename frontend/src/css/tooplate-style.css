@@ -185,15 +185,23 @@ textarea {
 
 .tm-btn-submit {
   background: none;
-  color: white;
+  color: var(--text-color);
   font-size: 1rem;
+  padding: 5px;
   border: 0;
   cursor: pointer;
+  box-shadow: black 1px 1px 2px 2px;
+  border-radius: 5px;
   transition: all 0.3s ease;
 }
 
 .tm-btn-submit:hover {
-  color: #000000;
+  color: blue;
+}
+
+.tm-social-link-container {
+  display: flex;
+  justify-content: space-around;
 }
 
 .tm-social-link {
