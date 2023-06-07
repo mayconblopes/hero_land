@@ -32,7 +32,6 @@ export function ThemeProvider({ children }: Props) {
           (theme: { id: string }) => theme.id === currentHero?.theme
         )[0]
         if (theme) {
-          console.log('THEME', theme)
           setCurrentTheme({
             id: theme.id,
             cover_bgcolor: theme.cover_bgcolor,
