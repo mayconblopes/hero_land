@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react'
 import { UserContext } from '../context/UserContext'
 import { APIURL, User } from '../utils/settings'
-import './loginForm.css'
 import { useNavigate, useParams } from 'react-router-dom'
+import './loginForm.css'
+import Footer from './Footer'
 
 export default function LoginForm() {
-  const {username} = useParams()
+  const { username } = useParams()
   const [user, setUser] = useState<User>({ username: username, password: '' })
 
   const userContext = useContext(UserContext)
@@ -38,7 +39,6 @@ export default function LoginForm() {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data)
           loggedIn = data
           if (loggedIn!.error) {
             console.log(loggedIn!.error)
@@ -51,25 +51,29 @@ export default function LoginForm() {
     }
   }
   return (
-    <form id='login-form'>
-      <input
-        id='username-input'
-        type='text'
-        name='username'
-        placeholder='username'
-        onChange={handleOnChange}
-        value={user.username}
-        disabled
-      />
-      <input
-        id='password-input'
-        type='password'
-        name='password'
-        placeholder='password'
-        onChange={handleOnChange}
-        value={user.password}
-      />
-      <button onClick={(e) => handleLogin(e)}>Login</button>
-    </form>
+    <div>
+      <form id='login-form'>
+        <input
+          id='username-input'
+          type='text'
+          name='username'
+          placeholder='username'
+          onChange={handleOnChange}
+          value={user.username}
+          disabled
+          style={{ display: 'none' }}
+        />
+        <input
+          id='password-input'
+          type='password'
+          name='password'
+          placeholder='senha'
+          onChange={handleOnChange}
+          value={user.password}
+        />
+        <button onClick={(e) => handleLogin(e)}>Login</button>
+      </form>
+      {/* <Footer/> */}
+    </div>
   )
 }
