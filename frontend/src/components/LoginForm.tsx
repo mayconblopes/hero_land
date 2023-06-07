@@ -3,7 +3,6 @@ import { UserContext } from '../context/UserContext'
 import { APIURL, User } from '../utils/settings'
 import { useNavigate, useParams } from 'react-router-dom'
 import './loginForm.css'
-import Footer from './Footer'
 
 export default function LoginForm() {
   const { username } = useParams()
@@ -73,7 +72,6 @@ export default function LoginForm() {
         />
         <button onClick={(e) => handleLogin(e)}>Login</button>
       </form>
-      {/* <Footer/> */}
     </div>
   )
 }
