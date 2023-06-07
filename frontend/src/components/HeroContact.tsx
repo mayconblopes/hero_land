@@ -58,18 +58,18 @@ export default function HeroContact() {
             <textarea
               name='address'
               onChange={(e) => handleOnChange(e)}
-              value={currentHero?.address}
+              value={currentHero?.address || ''}
             />
             <input
               name='phone'
               onChange={(e) => handleOnChange(e)}
-              value={currentHero?.phone}
+              value={currentHero?.phone || ''}
               placeholder='telefone'
             />
             <input
               name='whatsapp'
               onChange={(e) => handleOnChange(e)}
-              value={currentHero?.whatsapp}
+              value={currentHero?.whatsapp || ''}
               placeholder='link para chat via whatsapp'
             />
             {social.map((link) => (
@@ -87,13 +87,19 @@ export default function HeroContact() {
             {
               // conditional render: current user is not the hero owner? (edit disabled)
             }
-            <address className='tm-mb-30'>{currentHero?.address}</address>
+            {
+              currentHero?.address &&
+              <address className='tm-mb-30'>{currentHero?.address}</address>
+            }
+            {
+              currentHero?.phone &&
             <div className='tm-text-white tm-mb-40'>
               <a href={currentHero?.whatsapp} className='tm-link-white'>
                 Tel: {currentHero?.phone}
               </a>
             </div>
-            <div className='tm-flex'>
+            }
+            <div className='tm-social-link-container'>
               {social
                 .filter((link) => link.url !== null && link.url !== '')
                 .map((link) => (
