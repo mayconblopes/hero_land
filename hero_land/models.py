@@ -66,7 +66,7 @@ class HeroModel(models.Model):
     twitter = models.URLField(default='', blank=True, null=True)
     linkedin = models.URLField(default='', blank=True, null=True)
     facebook = models.URLField(default='', blank=True, null=True)
-    phone = models.CharField(max_length=30, default='')
+    phone = models.CharField(max_length=30, blank=True, null=True)
     address = models.TextField(max_length=500, default='', blank=True, null=True)
     whatsapp = models.URLField(default='https://api.whatsapp.com/send/?phone=55...', blank=True, null=True)
     cover = models.ImageField(upload_to='hero-covers', default='', blank=True, null=True)
