@@ -20,7 +20,12 @@ export interface IHeroContext {
   setCurrentHero: (hero: Hero | null) => void
 }
 
-export type ElementToChangeInThemeContext = 'cover_bgcolor' | 'about_bgcolor' | 'contact_bgcolor' | 'page_bgcolor' | 'font_color'
+export type ElementToChangeInThemeContext =
+  | 'cover_bgcolor'
+  | 'about_bgcolor'
+  | 'contact_bgcolor'
+  | 'page_bgcolor'
+  | 'font_color'
 
 export type Theme = {
   id?: string
@@ -37,6 +42,7 @@ export interface IThemeContext {
 }
 
 export type Hero = {
+  [key: string]: any
   id?: string
   name?: string
   username?: string
@@ -51,6 +57,6 @@ export type Hero = {
   address?: string
   whatsapp?: string
   cover_url?: string
-  cover?: string
+  cover?: File
   theme?: string
 }
