@@ -1,5 +1,5 @@
 #login-form {
-    margin: 0 auto;
+    margin: 200px auto;
     max-width: 350px;
     display: flex;
     flex-direction: column;
@@ -13,4 +13,5 @@
 #username-input, #password-input {
     border-bottom: 1px solid black;
     color: black;
+    width: 200px;
 }
