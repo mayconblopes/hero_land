@@ -14,7 +14,7 @@ export default function HeroAbout() {
 
   return (
     <section
-      className='tm-about tm-mb-80 tm-p-50 tm-border-rounded'
+      className='tm-about tm-mb-50 tm-p-50 tm-border-rounded'
       style={{ backgroundColor: currentTheme.about_bgcolor }}
     >
       <div className='tm-about-header tm-flex-center'>
